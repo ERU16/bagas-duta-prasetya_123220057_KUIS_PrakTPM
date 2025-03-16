@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
             Text('News App', style: const TextStyle(fontSize: 20)),
           ],
         ),
-        backgroundColor: Colors.blue[700],
+        backgroundColor: Color.fromARGB(255, 2, 170, 10),
         actions: [
           IconButton(
             icon: const Icon(Icons.person),

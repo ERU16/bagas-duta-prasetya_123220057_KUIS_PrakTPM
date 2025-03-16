@@ -1,41 +1,15 @@
 import 'package:flutter/material.dart';
 import 'model/newsmodel.dart';
 
-class ViewsPage extends StatefulWidget {
+class ViewsPage extends StatelessWidget {
   final NewsModel news;
 
   const ViewsPage({super.key, required this.news});
 
   @override
-  _ViewsPageState createState() => _ViewsPageState();
-}
-
-class _ViewsPageState extends State<ViewsPage> {
-  late int likes;
-  late bool isLiked;
-
-  @override
-  void initState() {
-    super.initState();
-    likes = widget.news.likes;
-    isLiked = false;
-  }
-
-  void _toggleLike() {
-    setState(() {
-      if (isLiked) {
-        likes--;
-      } else {
-        likes++;
-      }
-      isLiked = !isLiked;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.news.title)),
+      appBar: AppBar(title: Text(news.title)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -43,28 +17,16 @@ class _ViewsPageState extends State<ViewsPage> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.network(widget.news.image, width: double.infinity, fit: BoxFit.cover),
+              child: Image.network(news.image,
+                  width: double.infinity, fit: BoxFit.cover),
             ),
             const SizedBox(height: 20),
             Text(
-              widget.news.title,
+              news.title,
               style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-            Text(widget.news.description, style: const TextStyle(fontSize: 16)),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.favorite,
-                    color: isLiked ? Colors.red : Colors.grey,
-                  ),
-                  onPressed: _toggleLike,
-                ),
-                Text('$likes Likes', style: const TextStyle(fontSize: 16)),
-              ],
-            ),
+            Text(news.description, style: const TextStyle(fontSize: 16)),
           ],
         ),
       ),
